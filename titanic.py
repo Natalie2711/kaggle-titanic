@@ -1,6 +1,6 @@
 import pandas as pd
 # import matplotlib.pyplot as plt
-from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
 # plt.style.use("ggplot")
 
 
@@ -17,8 +17,8 @@ train.drop(["Sex"], axis=1, inplace=True)
 X_train = train.loc[:, ["Gender", "Pclass"]]
 Y_train = train.Survived
 
-log = LogisticRegression()
-log.fit(X_train, Y_train)
+knn = KNeighborsClassifier(n_neighbors=1)
+knn.fit(X_train, Y_train)
 
 test = pd.read_csv("test.csv",
                    header=0,
@@ -30,7 +30,7 @@ test["Gender"] = [0 if _ == "female" else 1 for _ in test["Sex"]]
 test.drop(["Sex"], axis=1, inplace=True)
 
 x_test = test.loc[:, ["Gender", "Pclass"]]
-y_test = log.predict(x_test)
+y_test = knn.predict(x_test)
 
 df = pd.DataFrame({"PassengerId": test.PassengerId, "Survived": y_test}).set_index("PassengerId")
 df.to_csv("submission.csv")
