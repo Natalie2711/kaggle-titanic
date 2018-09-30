@@ -1,3 +1,3 @@
 # kaggle-titanic
 
-My submission from Kaggle Titanic Machine Learning challenge
+My submission for Kaggle Titanic Machine Learning challenge
