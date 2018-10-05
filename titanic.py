@@ -17,7 +17,7 @@ train.drop(["Sex"], axis=1, inplace=True)
 X_train = train.loc[:, ["Gender", "Pclass"]]
 Y_train = train.Survived
 
-knn = KNeighborsClassifier(n_neighbors=1)
+knn = KNeighborsClassifier(n_neighbors=10)
 knn.fit(X_train, Y_train)
 
 test = pd.read_csv("test.csv",
